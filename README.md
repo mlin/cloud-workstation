@@ -1,6 +1,6 @@
 # Cloud workstation bootstrap
 
-## Launch actions in EC2 console
+### EC2 console
 
 1. Create cloud-workstation security group: tcp 22 0.0.0.0/0, udp 60000-61000 0.0.0.0/0
 1. Create an EC2 keypair, `chmod go-rwx` local copy
@@ -10,7 +10,7 @@
 1. Set DNS record
 1. Set [Auto Recovery](https://aws.amazon.com/blogs/aws/new-auto-recovery-for-amazon-ec2/)
 
-## Ansible playbook
+### Ansible playbook
 
 1. `ssh -i /path/to/key.pem ubuntu@hostname`
 2. `sudo bash -ex -c 'add-apt-repository ppa:ansible/ansible -y && apt-get update && apt-get install git ansible -y'`
