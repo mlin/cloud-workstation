@@ -13,5 +13,5 @@
 ## Ansible playbook
 
 1. `ssh -i /path/to/key.pem ubuntu@hostname`
-2. `sudo bash -ex -c 'add-apt-repository ppa:ansible/ansible -y && apt-get update && apt-get install ansible -y'`
-3. `sudo ansible-pull -d /etc/cloud-workstation -u https://github.com/mlin/cloud-workstation.git`
+2. `sudo bash -ex -c 'add-apt-repository ppa:ansible/ansible -y && apt-get update && apt-get install git ansible -y'`
+3. `sudo ansible-pull -d /etc/cloud-workstation -U https://github.com/mlin/cloud-workstation.git`
