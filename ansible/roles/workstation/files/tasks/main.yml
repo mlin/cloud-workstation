@@ -1,0 +1,18 @@
+---
+- name: several apt packages
+  apt: pkg={{item}}
+  with_items:
+  - ntp
+  - dstat
+  - htop
+  - secure-delete
+  - unattended-upgrades
+  - python-setuptools
+  - mosh
+- lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
+- name: configure unattended upgrades
+  copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
+- name: jq
+  get_url: url=http://stedolan.github.io/jq/download/linux64/jq dest=/usr/local/bin/jq mode=0755
+- name: pip
+  easy_install: name=pip
