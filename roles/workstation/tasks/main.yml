@@ -20,7 +20,7 @@
   when: authorized_keys_exists == False
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
-- lineinfile: "dest=/home/mlin/.bashrc create=yes owner=mlin group=mlin line='[ -r /home/ubuntu/.byobu/prompt ] && . /home/ubuntu/.byobu/prompt\t #byobu-prompt#'"
+- shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable"
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
 - apt: pkg=x2goserver
