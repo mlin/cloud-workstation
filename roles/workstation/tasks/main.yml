@@ -12,3 +12,8 @@
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
+- shell: yes '' | byobu-enable
+- name: x2go
+  apt_repository: repo='ppa:x2go/stable'
+- apt: pkg=x2goserver
+- apt: pkg=x2goserver-xsession
