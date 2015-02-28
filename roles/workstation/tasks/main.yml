@@ -14,10 +14,7 @@
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
 - name: user mlin
   user: name=mlin shell=/bin/bash uid=1861
-- stat: path=/home/mlin/.ssh/authorized_keys
-  register: authorized_keys_exists
 - authorized_key: user=mlin key="{{ lookup('file', '/home/ubuntu/.ssh/authorized_keys') }}"
-  when: authorized_keys_exists == False
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable"
