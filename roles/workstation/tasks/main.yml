@@ -17,7 +17,7 @@
 - authorized_key: user=mlin key="{{ lookup('file', '/home/ubuntu/.ssh/authorized_keys') }}"
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
-- shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable"
+- shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
 - apt: pkg=x2goserver
