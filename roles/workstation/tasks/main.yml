@@ -9,6 +9,7 @@
   - htop
   - secure-delete
   - unattended-upgrades
+  - xfce4
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
@@ -18,6 +19,10 @@
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
+- name: disable default ubuntu user account
+  user: name=ubuntu state=absent remove=yes force=yes
+- group: name=ubuntu state=absent
+- file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
 - apt: pkg=x2goserver
