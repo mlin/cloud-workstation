@@ -16,6 +16,8 @@
 2. `sudo bash -ex -c 'add-apt-repository ppa:ansible/ansible -y && apt-get update && apt-get install git ansible -y'`
 3. `sudo ansible-pull -d /etc/cloud-workstation -U https://github.com/mlin/cloud-workstation.git -i 'localhost,'`
 
+Thereafter the playbook can be executed with `sudo /etc/cloud-workstation/update`.
+
 # Access
 
 ### mosh
