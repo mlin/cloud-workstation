@@ -28,6 +28,7 @@
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
+- apt_repository: repo='ppa:webupd8team/sublime-text-3'
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
@@ -36,3 +37,4 @@
   - xfce4
   - xfce4-terminal
   - firefox
+  - sublime-text-installer
