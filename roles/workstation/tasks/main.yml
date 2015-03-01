@@ -12,11 +12,11 @@
   - unattended-upgrades
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: GFW SSH ports
-  lineinfile: dest=/etc/ssh/sshd_config line={{item}}
+  lineinfile: dest=/etc/ssh/sshd_config line={{item.line}}
   with_items:
-  - "Port 80"
-  - "Port 443"
-  - "Port 16384"
+  - {line: "Port 80"}
+  - {line: "Port 443"}
+  - {line: "Port 16384"}
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
 - name: user mlin
