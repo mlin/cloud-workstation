@@ -26,10 +26,6 @@
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
-- name: disable default ubuntu user account
-  user: name=ubuntu state=absent remove=yes force=yes
-- group: name=ubuntu state=absent
-- file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
 - apt_repository: repo='ppa:webupd8team/sublime-text-3'
@@ -42,3 +38,7 @@
   - xfce4-terminal
   - firefox
   - sublime-text-installer
+- name: disable default ubuntu user account
+  user: name=ubuntu state=absent force=yes
+- group: name=ubuntu state=absent
+- file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
