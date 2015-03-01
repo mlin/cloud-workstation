@@ -9,7 +9,6 @@
   - htop
   - secure-delete
   - unattended-upgrades
-  - xfce4
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
@@ -25,5 +24,11 @@
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
 - name: x2go
   apt_repository: repo='ppa:x2go/stable'
-- apt: pkg=x2goserver
-- apt: pkg=x2goserver-xsession
+- name: desktop packages
+  apt: pkg={{item}}
+  with_items:
+  - x2goserver
+  - x2goserver-xsession
+  - xfce4
+  - xfce4-terminal
+  - firefox
