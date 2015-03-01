@@ -4,12 +4,14 @@
 - apt: pkg={{item}}
   with_items:
   - ntp
-  - dstat
   - mosh
   - byobu
-  - htop
-  - secure-delete
   - unattended-upgrades
+  - htop
+  - dstat
+  - secure-delete
+  - build-essential
+  - git
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: GFW SSH ports
   lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
@@ -26,18 +28,23 @@
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
-- name: x2go
-  apt_repository: repo='ppa:x2go/stable'
-- apt_repository: repo='ppa:webupd8team/sublime-text-3'
+- name: dx-toolkit signing key
+  apt_key: url=https://wiki.dnanexus.com/images/files/ubuntu-signing-key.gpg
+- name: additional apt repositories
+  apt_repository: repo={{item}}
+  with_items:
+  - ppa:x2go/stable
+  - ppa:webupd8team/sublime-text-3
+  - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
+  - xubuntu-desktop
   - x2goserver
   - x2goserver-xsession
-  - xfce4
-  - xfce4-terminal
-  - firefox
+  - openvpn
   - sublime-text-installer
+  - dx-toolkit
 - name: disable default ubuntu user account
   user: name=ubuntu state=absent force=yes
 - group: name=ubuntu state=absent
