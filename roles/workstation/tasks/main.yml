@@ -46,6 +46,6 @@
   - sublime-text-installer
   - dx-toolkit
 - name: disable default ubuntu user account
-  user: name=ubuntu expires=0
+  command: chage -E 0 ubuntu
 - group: name=ubuntu state=absent
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
