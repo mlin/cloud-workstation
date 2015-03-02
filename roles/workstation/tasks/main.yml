@@ -27,7 +27,6 @@
   when: not authorized_key_exists
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
-- shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
 - name: dx-toolkit signing key
   apt_key: url=https://wiki.dnanexus.com/images/files/ubuntu-signing-key.gpg
 - name: additional apt repositories
