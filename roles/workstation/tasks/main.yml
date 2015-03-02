@@ -47,5 +47,4 @@
   - dx-toolkit
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
-- group: name=ubuntu state=absent
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
