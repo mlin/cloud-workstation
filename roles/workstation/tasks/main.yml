@@ -31,6 +31,7 @@
 - name: additional apt repositories
   apt_repository: repo="{{item}}"
   with_items:
+  - ppa:ubuntu-toolchain-r/test
   - ppa:x2go/stable
   - ppa:webupd8team/sublime-text-3
   - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
