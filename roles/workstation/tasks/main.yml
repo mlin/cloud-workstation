@@ -12,6 +12,7 @@
   - secure-delete
   - build-essential
   - git
+  - python-pip
   - docker.io
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: GFW SSH ports
