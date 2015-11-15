@@ -1,8 +1,4 @@
 ---
-- name: detect ubuntu release
-  shell: lsb_release -c -s
-  register: ubuntu_release
-  changed_when: False
 - name: apt
   apt: upgrade=full
 - apt: pkg={{item}}
@@ -45,8 +41,8 @@
   - ppa:ubuntu-toolchain-r/test
   - ppa:x2go/stable
   - ppa:webupd8team/sublime-text-3
-  - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu {{ubuntu_release}}/amd64/"
-  - "deb http://packages.cloud.google.com/apt cloud-sdk-{{ubuntu_release}} main"
+  - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
+  - "deb http://packages.cloud.google.com/apt cloud-sdk-trusty main"
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
