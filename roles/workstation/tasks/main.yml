@@ -26,8 +26,14 @@
 - lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
 - file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
+- name: pip packages
+  pip: name="{{item}}"
+  with_items:
+  - awscli
 - name: dx-toolkit signing key
   apt_key: url=https://wiki.dnanexus.com/images/files/ubuntu-signing-key.gpg
+- name: gcloud signing key
+  apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
 - name: additional apt repositories
   apt_repository: repo="{{item}}"
   with_items:
@@ -35,6 +41,7 @@
   - ppa:x2go/stable
   - ppa:webupd8team/sublime-text-3
   - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
+  - "deb http://packages.cloud.google.com/apt {{ansible_distribution_version}} main"
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
@@ -44,6 +51,7 @@
   - openvpn
   - sublime-text-installer
   - dx-toolkit
+  - google-cloud-sdk
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
