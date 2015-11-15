@@ -42,7 +42,7 @@
   - ppa:x2go/stable
   - ppa:webupd8team/sublime-text-3
   - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
-  - "deb http://packages.cloud.google.com/apt {{ansible_distribution_version}} main"
+  - "deb http://packages.cloud.google.com/apt {{ansible_distribution_release}} main"
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
