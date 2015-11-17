@@ -6,9 +6,7 @@
 1. Create an EC2 keypair, `chmod go-rwx` local copy
 1. Identify trusty amd64 hvm:ebs-ssd [Ubuntu AMI](http://cloud-images.ubuntu.com/locator/ec2/) for desired region
 1. Launch instance with all of the above. Check Auto-Assign Public IP, root volume size
-1. Create and associate Elastic IP
-1. Set DNS record
-1. Set [Auto Recovery](https://aws.amazon.com/blogs/aws/new-auto-recovery-for-amazon-ec2/)
+1. Create and associate Elastic IP and DNS record, or set up [Dynamic DNS](https://gist.github.com/larrybolt/6295160)
 
 ### Ansible playbook
 
