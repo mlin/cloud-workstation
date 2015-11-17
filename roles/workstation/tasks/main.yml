@@ -15,10 +15,10 @@
   - python-pip
   - docker.io
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
-- name: GFW SSH ports
-  lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
-- lineinfile: dest=/etc/ssh/sshd_config line="Port 443"
-- lineinfile: dest=/etc/ssh/sshd_config line="Port 16384"
+#- name: GFW SSH ports
+#  lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
+#- lineinfile: dest=/etc/ssh/sshd_config line="Port 443"
+#- lineinfile: dest=/etc/ssh/sshd_config line="Port 16384"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
 - name: user mlin
