@@ -13,7 +13,7 @@
 1. `ssh -i /path/to/key.pem ubuntu@hostname`
 2. `sudo bash -ex -c 'add-apt-repository ppa:ansible/ansible -y && apt-get update && apt-get install git ansible -y'`
 3. `sudo ansible-pull -d /etc/cloud-workstation -U https://github.com/mlin/cloud-workstation.git -i 'localhost,' -v`
-4. Set `/etc/hostname` and/or [Dynamic DNS](https://gist.github.com/larrybolt/6295160) if desired
+4. Set `/etc/hostname` and/or [Dynamic DNS](https://gist.github.com/larrybolt/6295160) if desired (increase crontab frequency to */2)
 5. `sudo service ssh restart`
 
 Thereafter the playbook can be executed with `sudo /etc/cloud-workstation/update`.
