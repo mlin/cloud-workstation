@@ -68,6 +68,6 @@
 - name: install CUDA SDK
   apt: deb=/root/cuda-repo-ubuntu1504_7.5-18_amd64.deb
 - apt: update_cache=yes
-  apt: pkg=cuda
+- apt: pkg=cuda
 - name: install TensorFlow
   pip: name='https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl' virtualenv=/home/mlin/tensorflow virtualenv_site_packages=yes
