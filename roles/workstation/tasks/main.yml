@@ -68,9 +68,9 @@
 - name: nvidia drivers
   apt: pkg=nvidia-352
 - name: fetch CUDA SDK installer
-  get_url: url='http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1504/x86_64/cuda-repo-ubuntu1504_7.5-18_amd64.deb' dest=/root/cuda-repo-ubuntu1504_7.5-18_amd64.deb
+  get_url: url='http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.0-28_amd64.deb' dest=/root/cuda-repo-ubuntu1404_7.0-28_amd64.deb
 - name: install CUDA SDK
-  apt: deb=/root/cuda-repo-ubuntu1504_7.5-18_amd64.deb
+  apt: deb=/root/cuda-repo-ubuntu1404_7.0-28_amd64.deb
 - apt: update_cache=yes
 - apt: pkg=cuda
 - name: install TensorFlow
