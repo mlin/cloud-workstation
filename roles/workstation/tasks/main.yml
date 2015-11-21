@@ -13,6 +13,7 @@
   - build-essential
   - git
   - python-pip
+  - python-virtualenv
   - docker.io
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 #- name: GFW SSH ports
@@ -43,6 +44,8 @@
   - ppa:webupd8team/sublime-text-3
   - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
   - "deb http://packages.cloud.google.com/apt cloud-sdk-trusty main"
+  - ppa:graphics-drivers/ppa
+- apt: update_cache=yes
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
@@ -56,9 +59,6 @@
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
-- name: Graphics drivers PPA
-  apt_repository: repo=ppa:graphics-drivers/ppa
-- apt: update_cache=yes
 - name: nvidia drivers
   apt: pkg=nvidia-358
 - name: fetch CUDA SDK installer
