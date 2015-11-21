@@ -14,6 +14,7 @@
   - git
   - python-pip
   - python-virtualenv
+  - python-dev
   - docker.io
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 #- name: GFW SSH ports
