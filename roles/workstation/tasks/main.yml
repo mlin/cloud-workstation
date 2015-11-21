@@ -16,6 +16,7 @@
   - python-virtualenv
   - python-dev
   - docker.io
+  - linux-image-extra-virtual
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 #- name: GFW SSH ports
 #  lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
