@@ -61,6 +61,9 @@
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
+- select gcc 4.9
+  alternatives: name=gcc link=/usr/bin/gcc path=/usr/bin/gcc-4.9
+- alternatives: name='g++' link='/usr/bin/g++' path='/usr/bin/g++-4.9'
 - name: nvidia drivers
   apt: pkg=nvidia-358
 - name: fetch CUDA SDK installer
