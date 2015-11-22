@@ -17,7 +17,6 @@
   - python-dev
   - docker.io
   - linux-image-extra-virtual
-  - g++-4.9
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 #- name: GFW SSH ports
 #  lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
@@ -62,9 +61,6 @@
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
-- name: select gcc 4.9
-  alternatives: name=gcc link=/usr/bin/gcc path=/usr/bin/gcc-4.9
-- alternatives: name='g++' link='/usr/bin/g++' path='/usr/bin/g++-4.9'
 - name: nvidia drivers
   apt: pkg=nvidia-352
 - name: fetch CUDA SDK installer
@@ -72,6 +68,6 @@
 - name: install CUDA SDK
   apt: deb=/root/cuda-repo-ubuntu1404_7.0-28_amd64.deb
 - apt: update_cache=yes
-- apt: pkg=cuda
+- apt: pkg='cuda-7.0'
 - name: install TensorFlow
   pip: name='https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl' virtualenv=/home/mlin/tensorflow virtualenv_site_packages=yes
