@@ -63,9 +63,18 @@
 - file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
 - name: nvidia drivers
   apt: pkg=nvidia-352
-- name: fetch CUDA SDK installer		
+# http://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
+- name: Check if cuda-repo-ubuntu1404 is installed
+  command: dpkg-query -W cuda-repo-ubuntu1404
+  register: my_package_check_deb
+  failed_when: my_package_check_deb.rc > 1
+  changed_when: my_package_check_deb.rc == 1
+- name: fetch cuda-repo-ubuntu1404 installer		
   get_url: url='http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.0-28_amd64.deb' dest=/root/cuda-repo-ubuntu1404_7.0-28_amd64.deb
+  when: my_package_check_deb.rc == 1
 - apt: update_cache=yes
+  when: my_package_check_deb.rc == 1
 - apt: pkg=cuda-7.0
+  when: my_package_check_deb.rc == 1
 - name: install TensorFlow
   pip: name='https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.5.0-cp27-none-linux_x86_64.whl' virtualenv=/home/mlin/tensorflow virtualenv_site_packages=yes
