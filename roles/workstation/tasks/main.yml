@@ -3,6 +3,7 @@
   apt: upgrade=full
 - apt: pkg={{item}}
   with_items:
+  - vim
   - ntp
   - mosh
   - byobu
