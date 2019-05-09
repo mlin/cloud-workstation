@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-pull -d /etc/cloud-workstation -U https://github.com/mlin/cloud-workstation.git -i 'localhost,'
+ansible-pull -d /etc/cloud-workstation -U https://github.com/mlin/cloud-workstation.git -C gcloud -i 'localhost,'
