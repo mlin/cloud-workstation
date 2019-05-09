@@ -9,40 +9,23 @@
   - unattended-upgrades
   - htop
   - dstat
+  - pv
   - secure-delete
   - build-essential
-  - git
-  - python-pip
+  - python3-pip
   - docker.io
+  - openjdk-11-jre-headless
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
-#- name: GFW SSH ports
-#  lineinfile: dest=/etc/ssh/sshd_config line="Port 80"
-#- lineinfile: dest=/etc/ssh/sshd_config line="Port 443"
-#- lineinfile: dest=/etc/ssh/sshd_config line="Port 16384"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
-- name: user mlin
-  user: name=mlin shell=/bin/bash uid=1861
-- authorized_key: user=mlin key="{{ lookup('file', '/home/ubuntu/.ssh/authorized_keys') }}"
-- lineinfile: dest=/etc/sudoers.d/50-mlin create=yes line="mlin ALL=(ALL) NOPASSWD:ALL"
-- file: path=/etc/sudoers.d/50-mlin owner=root group=root mode=0440
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
-- name: pip packages
-  pip: name="{{item}}"
-  with_items:
-  - awscli
-- name: dx-toolkit signing key
-  apt_key: url=https://wiki.dnanexus.com/images/files/ubuntu-signing-key.gpg
 - name: gcloud signing key
   apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
 - name: additional apt repositories
   apt_repository: repo="{{item}}"
   with_items:
-  - ppa:ubuntu-toolchain-r/test
   - ppa:x2go/stable
-  - ppa:webupd8team/sublime-text-3
-  - "deb http://dnanexus-apt-prod.s3.amazonaws.com/ubuntu trusty/amd64/"
-  - "deb http://packages.cloud.google.com/apt cloud-sdk-trusty main"
+  - "deb http://packages.cloud.google.com/apt cloud-sdk-bionic main"
 - name: desktop packages
   apt: pkg={{item}}
   with_items:
@@ -50,9 +33,6 @@
   - x2goserver
   - x2goserver-xsession
   - openvpn
-  - sublime-text-installer
-  - dx-toolkit
   - google-cloud-sdk
 - name: disable default ubuntu user account
   command: chage -E 0 ubuntu
-- file: path=/etc/sudoers.d/90-cloudimg-ubuntu state=absent
