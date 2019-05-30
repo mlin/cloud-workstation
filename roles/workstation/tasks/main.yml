@@ -16,10 +16,13 @@
   - python3-pip
   - docker.io
   - openjdk-11-jre-headless
+  - tree
 - lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line="PermitRootLogin no"
 - name: configure unattended upgrades
   copy: src=10periodic dest=/etc/apt/apt.conf.d/10periodic
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
+- name: docker group
+  command: gpasswd -a mlin docker
 - name: gcloud signing key
   apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
 - name: additional apt repositories
