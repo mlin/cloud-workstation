@@ -33,7 +33,6 @@
   command: gpasswd -a mlin docker
 - shell: sudo -H -u mlin bash -ex -c "yes '' | byobu-enable" || true
 - name: pip packages
-  executable: pip3
   pip: name="{{item}}"
   with_items:
   - awscli
