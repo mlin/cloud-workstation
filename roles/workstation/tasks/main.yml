@@ -13,6 +13,7 @@
   - secure-delete
   - build-essential
   - git
+  - python-pip
   - python3-pip
   - docker.io
   - pv
